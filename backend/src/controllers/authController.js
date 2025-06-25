@@ -16,7 +16,7 @@ const generateToken = (user) => {
 
 // Helper: Send email using nodemailer
 const sendEmail = async (to, subject, text, html = null) => {
-  const transporter = nodemailer.createTransporter({
+  const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
     port: process.env.EMAIL_PORT,
     secure: process.env.EMAIL_SECURE === 'true',
@@ -257,8 +257,8 @@ export const requestPasswordReset = async (req, res) => {
     await user.save();
     
     // Send reset email
-    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
-    const resetUrl = `${frontendUrl}/reset-password/${resetToken}`;
+    const backendUrl = process.env.BACKEND_URL || 'http://localhost:4000';
+    const resetUrl = `${backendUrl}/reset/${resetToken}`;
     
     const emailText = `You requested a password reset. Click the link to reset your password: ${resetUrl}`;
     

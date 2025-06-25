@@ -298,6 +298,13 @@ app.get('/verify/:token', async (req, res) => {
   }
 });
 
+// Password reset redirect page - this will redirect to the frontend reset-password page
+app.get('/reset/:token', (req, res) => {
+  const { token } = req.params;
+  const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+  res.redirect(`${frontendUrl}/reset-password/${token}`);
+});
+
 // 404 handler
 app.use((req, res) => {
   res.status(404).json({ success: false, message: 'Endpoint not found' });

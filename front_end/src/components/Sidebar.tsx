@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import Logo from '../image/log.png';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -40,11 +41,7 @@ const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 flex items-center justify-center">
-              <svg width="24" height="30" viewBox="0 0 24 32" className="drop-shadow-sm">
-                <path d="M12 0C5.373 0 0 5.373 0 12c0 3.314 1.344 6.314 3.515 8.485L12 32l8.485-11.515C22.656 18.314 24 15.314 24 12c0-6.627-5.373-12-12-12z" fill="#4B93E7"/>
-                <circle cx="12" cy="12" r="5" fill="#F97316"/>
-                <circle cx="12" cy="10" r="2" fill="#4B93E7"/>
-              </svg>
+         <img src={Logo} alt="" />
             </div>
             <h1 className="text-xl font-bold text-gray-800">HR Management</h1>
           </div>

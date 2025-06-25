@@ -70,7 +70,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const signup = async (userData: { name: string; email: string; password: string }) => {
     try {
-      await authAPI.signup(userData);
+      await authAPI.signup({ ...userData, role: 'HR' });
     } catch (error) {
       console.error('Signup error:', error);
       throw error;

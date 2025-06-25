@@ -12,12 +12,12 @@ const VerifyEmail = () => {
     setStatus('pending');
     setMessage('Verifying your email...');
     try {
-      const res = await axios.get(`http://localhost:4000/api/auth/verify/${token}`);
+      const res = await axios.get(`https://hr-management-clso.onrender.com/api/auth/verify/${token}`);
       if (res.data.success) {
         setStatus('success');
         setMessage(res.data.message || 'Email verified successfully! Redirecting...');
         setTimeout(() => {
-          window.location.href = 'http://localhost:4000';
+          window.location.href = 'https://hr-management-clso.onrender.com';
         }, 2500);
       } else {
         setStatus('error');

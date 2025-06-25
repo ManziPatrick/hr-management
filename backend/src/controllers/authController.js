@@ -58,7 +58,7 @@ export const signup = async (req, res) => {
     const user = await User.create({ name, email, password, verificationToken });
     
     // Send verification email with HTML template
-    const backendUrl = process.env.BACKEND_URL || 'http://localhost:4000';
+    const backendUrl = process.env.BACKEND_URL || 'https://hr-management-clso.onrender.com';
     const verifyUrl = `${backendUrl}/verify/${verificationToken}`;
     
     const emailText = `Welcome to our platform! Please verify your email by clicking the link: ${verifyUrl}`;
@@ -182,7 +182,7 @@ export const resendVerification = async (req, res) => {
     await user.save();
     
     // Send new verification email
-    const backendUrl = process.env.BACKEND_URL || 'http://localhost:4000';
+    const backendUrl = process.env.BACKEND_URL || 'https://hr-management-clso.onrender.com';
     const verifyUrl = `${backendUrl}/verify/${verificationToken}`;
     
     const emailText = `Please verify your email by clicking the link: ${verifyUrl}`;
@@ -257,7 +257,7 @@ export const requestPasswordReset = async (req, res) => {
     await user.save();
     
     // Send reset email
-    const backendUrl = process.env.BACKEND_URL || 'http://localhost:4000';
+    const backendUrl = process.env.BACKEND_URL || 'https://hr-management-clso.onrender.com';
     const resetUrl = `${backendUrl}/reset/${resetToken}`;
     
     const emailText = `You requested a password reset. Click the link to reset your password: ${resetUrl}`;

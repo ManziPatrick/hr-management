@@ -374,11 +374,11 @@ const Dashboard = () => {
               </div>
             )}
             
-            <div className="grid grid-cols-4 gap-6 mb-6">
+            <div className="grid grid-cols-4 gap-6 mb-0">
               {overviewStats.map((stat, index) => (
                 <div
                   key={index}
-                  className="relative bg-white rounded-2xl shadow-sm border border-blue-100 flex flex-col items-center justify-between py-8 px-4"
+                  className="relative bg-white rounded-2xl shadow-sm border border-blue-100 flex  items-center justify-between py-8 px-4"
                   style={{ minHeight: 200 }}
                 >
                   {/* Number in rounded rectangle, slightly outside top-left */}
@@ -387,16 +387,17 @@ const Dashboard = () => {
                       {stat.value}
                     </div>
                   </div>
+                  
+                  {/* Label below image */}
+                  <div className="text-center text-base font-medium text-gray-800 leading-tight mt-8">
+                    {stat.label}
+                  </div>
                   {/* Image on top */}
                   <img
                     src={overviewImages[index]}
                     alt={stat.label}
-                    className="w-20 h-20 object-contain mb-4"
+                    className="w-20 h-20 object-contain mb-16"
                   />
-                  {/* Label below image */}
-                  <div className="text-center text-base font-medium text-gray-800 leading-tight mt-2">
-                    {stat.label}
-                  </div>
                 </div>
               ))}
             </div>

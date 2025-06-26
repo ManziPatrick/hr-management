@@ -24,7 +24,7 @@
 }
 
 .sidebar-icon-glow {
-  box-shadow: 0 0 16px 6px #f59e42, 0 0 8px 2px #fff;
+  box-shadow: 0 0 16px 6px #fff, 0 0 8px 2px #fff;
   border-radius: 9999px;
   background: rgba(255,255,255,0.08);
 }

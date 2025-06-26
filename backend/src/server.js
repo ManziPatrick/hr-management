@@ -22,9 +22,7 @@ connectDB();
 app.use(helmet());
 app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({
-  origin: 'https://hr-management-q55s.vercel.app'
-}));
+app.use(cors({ origin: ['https://hr-management-q55s.vercel.app','http://localhost:3000'] }));
 app.use(morgan('dev'));
 
 // Rate Limiting

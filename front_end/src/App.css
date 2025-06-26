@@ -10,3 +10,21 @@
   height: 100vh;
   min-height: 100vh;
 }
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 8px 2px #3b82f6, 0 0 0 0 #3b82f6;
+  }
+  50% {
+    box-shadow: 0 0 24px 8px #3b82f6, 0 0 0 0 #3b82f6;
+  }
+  100% {
+    box-shadow: 0 0 8px 2px #3b82f6, 0 0 0 0 #3b82f6;
+  }
+}
+
+.sidebar-icon-glow {
+  box-shadow: 0 0 16px 6px #f59e42, 0 0 8px 2px #fff;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.08);
+}

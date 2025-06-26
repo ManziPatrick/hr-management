@@ -82,14 +82,16 @@ const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
-                  isActive
-                    ? 'bg-blue-50 text-blue-700 border-r-2 border-blue-700'
-                    : 'text-gray-700 hover:bg-gray-50'
-                }`}
+                className={`flex flex-col items-center justify-center space-y-1 px-0 py-4 transition-all duration-300
+                  ${isActive
+                    ? 'relative text-white font-bold bg-[#0B2A7D] before:content-[""] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-2 before:rounded-l-2xl before:bg-orange-400'
+                    : 'text-blue-100 hover:bg-blue-900 hover:text-white'
+                  }`}
               >
-                <Icon size={20} />
-                <span className="font-medium">{item.label}</span>
+                <span className={isActive ? "sidebar-icon-glow p-2" : ""}>
+                  <Icon size={28} />
+                </span>
+                <span className="font-medium text-sm mt-1">{item.label}</span>
               </Link>
             );
           })}

@@ -22,6 +22,14 @@ import { candidatesAPI, jobsAPI } from '../services/api';
 import CandidateModal from '../components/CandidateModal';
 import JobModal from '../components/JobModal';
 import { useToast } from '../contexts/ToastContext';
+import interviewIm from '../image/nterview.png'
+import FeedbackI from '../image/Feedback.png'
+import ApprovalI from '../image/Approval.png'
+import AcceptanceI from '../image/Acceptance.png'
+import DocumentationsI from '../image/documentation.png'
+import TrainingI from '../image/Training.png'
+import SupervisorI from '../image/Illustrations.png'
+import ProjectI from '../image/Project.png'
 
 interface OverviewStat {
   icon: any;
@@ -181,6 +189,18 @@ const Dashboard = () => {
       time: '11:30 AM',
       type: 'Portfolio Review'
     }
+  ];
+
+  // Array of images corresponding to each overview stat
+  const overviewImages = [
+    interviewIm,      // Interview Scheduled
+    FeedbackI,        // Interview Feedback Pending
+    ApprovalI,        // Approval Pending
+    AcceptanceI,      // Offer Acceptance Pending
+    DocumentationsI,  // Documentations Pending
+    TrainingI,        // Training Pending
+    SupervisorI,      // Supervisor Allocation Pending
+    ProjectI          // Project Allocation Pending
   ];
 
   useEffect(() => {
@@ -354,86 +374,28 @@ const Dashboard = () => {
               </div>
             )}
             
-            <div className="grid grid-cols-4 gap-4 mb-6">
+            <div className="grid grid-cols-4 gap-6 mb-6">
               {overviewStats.map((stat, index) => (
-                <div key={index} className="rounded-2xl p-6 shadow-sm border border-gray-100 relative" style={{ backgroundColor: '#F3F8FF' }}>
-                  {/* Number in rounded rectangle positioned slightly outside the top-left corner */}
-                  <div className="absolute -top-2 -left-2">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl border-2 border-blue-300">
-                      <span className="text-2xl font-bold text-blue-900">{stat.value}</span>
+                <div
+                  key={index}
+                  className="relative bg-white rounded-2xl shadow-sm border border-blue-100 flex flex-col items-center justify-between py-8 px-4"
+                  style={{ minHeight: 200 }}
+                >
+                  {/* Number in rounded rectangle, slightly outside top-left */}
+                  <div className="absolute -top-4 -left-4">
+                    <div className="flex items-center justify-center w-14 h-14 bg-white rounded-2xl border-2 border-blue-200 text-blue-900 text-2xl font-bold shadow">
+                      {stat.value}
                     </div>
                   </div>
-                  <div className="pt-8 flex">
-                    {/* Left side - Text label positioned at bottom left */}
-                    <div className="flex-1 flex items-end">
-                      <div className="text-left text-sm text-gray-700 font-medium leading-tight">{stat.label}</div>
-                    </div>
-                    
-                    {/* Right side - Illustration positioned higher up */}
-                    <div className="flex-shrink-0 flex items-start pt-2">
-                      <div className="relative">
-                        {/* Detailed illustration matching the reference image */}
-                        <svg width="80" height="60" viewBox="0 0 100 70" className="drop-shadow-sm">
-                          {/* Table surface */}
-                          <ellipse cx="50" cy="52" rx="35" ry="4" fill="#E5E7EB" opacity="0.8"/>
-                          <rect x="15" y="48" width="70" height="8" rx="4" fill="#6B7280" opacity="0.6"/>
-                          
-                          {/* Table legs */}
-                          <rect x="20" y="56" width="3" height="10" fill="#6B7280" opacity="0.4"/>
-                          <rect x="77" y="56" width="3" height="10" fill="#6B7280" opacity="0.4"/>
-                          
-                          {/* Person 1 (left, darker blue) */}
-                          {/* Head */}
-                          <circle cx="32" cy="18" r="8" fill="#1E40AF"/>
-                          {/* Hair */}
-                          <path d="M24 15 Q32 8 40 15 L38 20 Q32 12 26 20 Z" fill="#1F2937"/>
-                          {/* Face details */}
-                          <circle cx="29" cy="17" r="1" fill="white" opacity="0.8"/>
-                          <circle cx="35" cy="17" r="1" fill="white" opacity="0.8"/>
-                          
-                          {/* Body/shirt */}
-                          <rect x="24" y="26" width="16" height="22" rx="4" fill="#3B82F6"/>
-                          {/* Arms */}
-                          <ellipse cx="20" cy="35" rx="4" ry="8" fill="#3B82F6"/>
-                          <ellipse cx="44" cy="35" rx="4" ry="8" fill="#3B82F6"/>
-                          {/* Hands on table */}
-                          <ellipse cx="22" cy="48" rx="3" ry="2" fill="#FBBF24"/>
-                          <ellipse cx="42" cy="48" rx="3" ry="2" fill="#FBBF24"/>
-                          
-                          {/* Person 2 (right, lighter blue) */}
-                          {/* Head */}
-                          <circle cx="68" cy="18" r="8" fill="#60A5FA"/>
-                          {/* Hair */}
-                          <path d="M60 15 Q68 8 76 15 L74 20 Q68 12 62 20 Z" fill="#374151"/>
-                          {/* Face details */}
-                          <circle cx="65" cy="17" r="1" fill="white" opacity="0.8"/>
-                          <circle cx="71" cy="17" r="1" fill="white" opacity="0.8"/>
-                          
-                          {/* Body/shirt */}
-                          <rect x="60" y="26" width="16" height="22" rx="4" fill="#93C5FD"/>
-                          {/* Arms */}
-                          <ellipse cx="56" cy="35" rx="4" ry="8" fill="#93C5FD"/>
-                          <ellipse cx="80" cy="35" rx="4" ry="8" fill="#93C5FD"/>
-                          {/* Hands on table */}
-                          <ellipse cx="58" cy="48" rx="3" ry="2" fill="#FBBF24"/>
-                          <ellipse cx="78" cy="48" rx="3" ry="2" fill="#FBBF24"/>
-                          
-                          {/* Chairs */}
-                          {/* Chair 1 (left) */}
-                          <rect x="26" y="50" width="12" height="16" rx="2" fill="#6B7280" opacity="0.7"/>
-                          <rect x="28" y="44" width="8" height="6" rx="1" fill="#6B7280" opacity="0.7"/>
-                          
-                          {/* Chair 2 (right) */}
-                          <rect x="62" y="50" width="12" height="16" rx="2" fill="#6B7280" opacity="0.7"/>
-                          <rect x="64" y="44" width="8" height="6" rx="1" fill="#6B7280" opacity="0.7"/>
-                          
-                          {/* Documents/papers on table */}
-                          <rect x="45" y="46" width="10" height="6" rx="1" fill="white" opacity="0.9"/>
-                          <rect x="46" y="47" width="8" height="1" fill="#E5E7EB"/>
-                          <rect x="46" y="49" width="6" height="1" fill="#E5E7EB"/>
-                        </svg>
-                      </div>
-                    </div>
+                  {/* Image on top */}
+                  <img
+                    src={overviewImages[index]}
+                    alt={stat.label}
+                    className="w-20 h-20 object-contain mb-4"
+                  />
+                  {/* Label below image */}
+                  <div className="text-center text-base font-medium text-gray-800 leading-tight mt-2">
+                    {stat.label}
                   </div>
                 </div>
               ))}

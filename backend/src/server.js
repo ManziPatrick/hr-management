@@ -124,7 +124,7 @@ app.get('/verify/:token', async (req, res) => {
               <div class="icon error">❌</div>
               <h2>Verification Failed</h2>
               <p>This verification link is invalid or has expired. Please request a new verification email.</p>
-              <a href="http://localhost:3000/login" class="btn">Go to Login</a>
+              <a href="https://hr-management-q55s.vercel.app/login" class="btn">Go to Login</a>
             </div>
           </body>
         </html>
@@ -212,7 +212,7 @@ app.get('/verify/:token', async (req, res) => {
             <div class="icon success">✅</div>
             <h2>Email Verified Successfully!</h2>
             <p>Congratulations! Your email has been verified. You can now access all features of your account.</p>
-            <a href="http://localhost:3000/login" class="btn" id="loginBtn">Login Now</a>
+            <a href="https://hr-management-q55s.vercel.app/login" class="btn" id="loginBtn">Login Now</a>
             <div class="countdown">
               <div class="redirect-text">Redirecting to login in <span id="countdown">5</span> seconds...</div>
             </div>
@@ -229,7 +229,7 @@ app.get('/verify/:token', async (req, res) => {
               
               if (countdown <= 0) {
                 clearInterval(timer);
-                window.location.href = 'http://localhost:3000/login';
+                window.location.href = 'https://hr-management-q55s.vercel.app/login';
               }
             }, 1000);
             
@@ -290,7 +290,7 @@ app.get('/verify/:token', async (req, res) => {
             <div class="icon error">⚠️</div>
             <h2>Verification Error</h2>
             <p>An error occurred while verifying your email. Please try again or contact support.</p>
-            <a href="http://localhost:3000/login" class="btn">Go to Login</a>
+            <a href="https://hr-management-q55s.vercel.app/login" class="btn">Go to Login</a>
           </div>
         </body>
       </html>
@@ -301,7 +301,7 @@ app.get('/verify/:token', async (req, res) => {
 // Password reset redirect page - this will redirect to the frontend reset-password page
 app.get('/reset/:token', (req, res) => {
   const { token } = req.params;
-  const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+  const frontendUrl = process.env.FRONTEND_URL || 'https://hr-management-q55s.vercel.app';
   res.redirect(`${frontendUrl}/reset-password/${token}`);
 });
 

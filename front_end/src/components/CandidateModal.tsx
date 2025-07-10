@@ -109,6 +109,13 @@ const CandidateModal = ({ isOpen, onClose, candidate, onSave, mode }: CandidateM
     if (candidate && mode === 'edit') {
       setFormData({
         ...candidate,
+        location: candidate.location || {
+          city: '',
+          state: '',
+          country: 'USA',
+          address: '',
+          zipCode: ''
+        },
         availableStartDate: candidate.availableStartDate ? new Date(candidate.availableStartDate) : null
       });
     } else {
@@ -153,7 +160,7 @@ const CandidateModal = ({ isOpen, onClose, candidate, onSave, mode }: CandidateM
       setFormData(prev => ({
         ...prev,
         location: {
-          ...prev.location,
+          ...(prev.location || {}),
           [field]: value
         }
       }));
@@ -406,7 +413,7 @@ const CandidateModal = ({ isOpen, onClose, candidate, onSave, mode }: CandidateM
                 <input
                   type="text"
                   name="location.city"
-                  value={formData.location.city}
+                  value={formData.location?.city || ''}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
@@ -418,7 +425,7 @@ const CandidateModal = ({ isOpen, onClose, candidate, onSave, mode }: CandidateM
                 <input
                   type="text"
                   name="location.state"
-                  value={formData.location.state}
+                  value={formData.location?.state || ''}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
@@ -430,7 +437,7 @@ const CandidateModal = ({ isOpen, onClose, candidate, onSave, mode }: CandidateM
                 <input
                   type="text"
                   name="location.country"
-                  value={formData.location.country}
+                  value={formData.location?.country || ''}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
@@ -442,7 +449,7 @@ const CandidateModal = ({ isOpen, onClose, candidate, onSave, mode }: CandidateM
                 <input
                   type="text"
                   name="location.zipCode"
-                  value={formData.location.zipCode}
+                  value={formData.location?.zipCode || ''}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />

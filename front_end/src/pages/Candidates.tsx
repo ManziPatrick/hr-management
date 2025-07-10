@@ -124,11 +124,33 @@ const Candidates = () => {
 
   const handleSaveCandidate = async (candidateData: any) => {
     try {
+      // Transform frontend field names to match backend validation expectations
+      const transformedData = {
+        ...candidateData,
+        position: candidateData.currentPosition, // Map currentPosition to position
+        experience: candidateData.yearsOfExperience?.toString() || '0', // Map yearsOfExperience to experience as string
+        location: candidateData.location?.city || '', // Map location object to location string for validation
+        // Format dates properly for backend
+        availableStartDate: candidateData.availableStartDate ? candidateData.availableStartDate.toISOString() : null,
+        // Ensure work history dates are properly formatted if they exist
+        workHistory: candidateData.workHistory?.map((job: any) => ({
+          ...job,
+          startDate: job.startDate ? new Date(job.startDate).toISOString() : job.startDate,
+          endDate: job.endDate ? new Date(job.endDate).toISOString() : job.endDate
+        })) || [],
+        // Ensure education dates are properly formatted if they exist
+        education: candidateData.education?.map((edu: any) => ({
+          ...edu,
+          startDate: edu.startDate ? new Date(edu.startDate).toISOString() : edu.startDate,
+          endDate: edu.endDate ? new Date(edu.endDate).toISOString() : edu.endDate
+        })) || []
+      };
+
       if (candidateModalMode === 'add') {
-        await candidatesAPI.create(candidateData);
+        await candidatesAPI.create(transformedData);
         showToast('success', 'Candidate created successfully');
       } else if (editingCandidate) {
-        await candidatesAPI.update(editingCandidate._id, candidateData);
+        await candidatesAPI.update(editingCandidate._id, transformedData);
         showToast('success', 'Candidate updated successfully');
       }
       setShowCandidateModal(false);
@@ -318,7 +340,7 @@ const Candidates = () => {
                         </div>
                         <div className="text-sm text-gray-500 flex items-center">
                           <MapPin size={14} className="mr-1" />
-                          {candidate.location.city}, {candidate.location.state}
+                          {candidate.location?.city || 'N/A'}{candidate.location?.state ? `, ${candidate.location.state}` : ''}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -348,14 +370,20 @@ const Candidates = () => {
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <div className="flex items-center justify-end space-x-2">
                           <button
-                            onClick={() => handleEditCandidate(candidate)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleEditCandidate(candidate);
+                            }}
                             className="text-blue-600 hover:text-blue-900"
                             title="Edit"
                           >
                             <Edit size={16} />
                           </button>
                           <button
-                            onClick={() => handleDeleteCandidate(candidate._id)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleDeleteCandidate(candidate._id);
+                            }}
                             className="text-red-600 hover:text-red-900"
                             title="Delete"
                           >

@@ -41,24 +41,30 @@ export const validateCandidate = [
     .matches(/^[\+]?[0-9\s\-\(\)]{7,15}$/)
     .withMessage('Please enter a valid phone number'),
   
-  body('position')
+  body('currentPosition')
     .trim()
     .notEmpty()
     .withMessage('Position is required')
     .isLength({ max: 100 })
     .withMessage('Position cannot exceed 100 characters'),
   
-  body('location')
+  body('currentCompany')
     .trim()
     .notEmpty()
-    .withMessage('Location is required')
+    .withMessage('Company is required')
     .isLength({ max: 100 })
-    .withMessage('Location cannot exceed 100 characters'),
+    .withMessage('Company cannot exceed 100 characters'),
   
-  body('experience')
+  body('location.city')
+    .optional()
     .trim()
-    .notEmpty()
-    .withMessage('Experience is required'),
+    .isLength({ max: 100 })
+    .withMessage('City cannot exceed 100 characters'),
+  
+  body('yearsOfExperience')
+    .optional()
+    .isFloat({ min: 0 })
+    .withMessage('Experience must be a positive number'),
   
   body('status')
     .optional()
